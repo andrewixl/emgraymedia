@@ -91,7 +91,6 @@ class ContactManager(models.Manager):
 
             send_mail(subject, message, from_email, recipient_list,
                       fail_silently=False, html_message=html_message)
-            print "Email Sent"
         return results
 
 
