@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load staticfiles %}
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,500,700|Roboto:400,900" rel="stylesheet">
+    <link href="{% static 'modeling/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <!-- <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet"> -->
+    <link href="{% static 'modeling/css/index.css' %}" rel="stylesheet">
+    <link href="{% static 'modeling/lib/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'modeling/css/contact.css' %}" rel="stylesheet">
+    <link rel="shortcut icon" href="{% static 'modeling/img/favicon.ico'%}" type="image/x-icon">
+    <title>Em Gray Media</title>
+  </head>
+  <body>
+    <!-- NAVBAR
+    ================================================== -->
+        <div class="navbar-wrapper">
+          <div class="container">
+
+            <nav class="navbar navbar-inverse navbar-static-top">
+              <div class="container">
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                  <a class="navbar-brand" href="/">Em Gray Media</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                  <ul class="nav navbar-nav">
+                    <li><a href="/">Home</a></li>
+                    <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About<span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                        <li><a href="/about">Who Am I?</a></li>
+                        <li><a href="/about#being_body_positive">Being Body Positive</a></li>
+                        <li><a href="/about#my_camera">My Camera</a></li>
+                        <li><a href="/about#editing_photos">Editing Photos</a></li>
+                      </ul>
+                    </li>
+                    <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Portfolio<span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                        <li class="dropdown-header">Modeling</li>
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="/modeling">View All →</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li class="dropdown-header">Collaborations</li>
+                        <li><a href="#">Separated link</a></li>
+                        <li><a href="#">One more separated link</a></li>
+                        <li><a href="/collaborations">View All →</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li class="dropdown-header">Photography</li>
+                        <li><a href="#">Separated link</a></li>
+                        <li><a href="#">One more separated link</a></li>
+                        <li><a href="/photography">View All →</a></li>
+                      </ul>
+                    </li>
+                    <li><a href="/book">Book Now</a></li>
+                    <li class="active"><a href="/contact">Contact</a></li>
+                    <li><a href="/account">Account</a></li>
+                  </ul>
+                </div>
+              </div>
+            </nav>
+
+          </div>
+        </div>
+        <div class="container marketing">
+          <!-- CONTACT US -->
+          <section id="contact" >
+            <div class="container">
+              <div id="alerts">
+                <!-- <div class="alert alert-success" role="alert">
+                  <strong>Success!</strong> You Message Has Successfully Been Sent.
+                </div> -->
+                {%if messages%}
+              		{%for message in messages%}
+                    {%if request.session.contactstatus == False%}
+                      <div class="alert alert-danger" role="alert">
+                        <strong>Error!</strong> {{message}}
+                      </div>
+                    {%elif request.session.contactstatus == True%}
+                      <div class="alert alert-success" role="alert">
+                        <strong>Success!</strong> You Message Has Successfully Been Sent.
+                      </div>
+                    {%endif%}
+              		{%endfor%}
+              	{%endif%}
+              </div>
+              <div class="row">
+                <div id="section2">
+                  <h2 id="h2contact">Contact Me:</h2>
+                  <div class="form">
+                    <form action="/createcontact" method="post" role="form" class="contactForm">
+                        {%csrf_token%}
+                        <input type="text" name="name" class="form-control" id="name" placeholder="Your Name"/><br>
+                        <input type="email" class="form-control" name="email" id="email" placeholder="Your Email"/><br>
+                        <input type="text" name="city" class="form-control" id="name" placeholder="Your City"/><br>
+                        <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject"/><br>
+                        <textarea class="form-control" name="message" rows="5" placeholder="Message"></textarea><br>
+                        <div class="text-center"><button type="submit">Send Message</button></div>
+                    </form>
+                  </div>
+                </div>
+
+                <div id="section1">
+                  <h2 id="h2contact">Other Info:</h2>
+                  <div class="info">
+                    <div>
+                      <i class="fa fa-map-marker"></i>
+                      <p>Seattle, WA</p>
+                    </div>
+
+                    <div>
+                      <i class="fa fa-envelope"></i>
+                      <p>contact@emgraymedia.gq</p>
+                    </div>
+
+                    <!-- <div>
+                      <i class="fa fa-phone"></i>
+                      <p>+1 5589 55488 55s</p>
+                    </div> -->
+
+                  </div>
+                </div>
+                <h6 align='center'>A Copy of The Sent Message Will Be Sent to the Email You Listed Above.</h6>
+              </div>
+            </div>
+          </section>
+
+
+          <!-- FOOTER -->
+          <div class="socialicondiv" align="center">
+            <a href="https://www.instagram.com/msemgray/">
+              <img class="socialicons" src="{% static 'modeling/img/instagram_icon.png' %}" alt="Instagram Icon">
+            </a>
+            <img class="socialicons" src="{% static 'modeling/img/thehub_icon.png' %}" alt="The Hub Icon">
+            <a href="https://www.linkedin.com/in/emily-gray-028173146/ ">
+              <img class="socialicons" src="{% static 'modeling/img/linkedin_icon.png' %}" alt="LinkedIn Icon">
+            </a>
+          </div>
+
+          <footer>
+            <p class="pull-right"><a href="#">Back to top</a></p>
+            <p>&copy; 2016 Em Gray Media. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+          </footer>
+
+        </div><!-- /.container -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery.min.js"><\/script>')</script>
+        <script src="{% static 'modeling/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'modeling/js/custom.js' %}"></script>
+        <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+        <script src="{% static 'modeling/js/holder.min.js' %}"></script>
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <script src="{% static 'modeling/js/ie10-viewport-bug-workaround.js' %}"></script>
+  </body>
+</html>
