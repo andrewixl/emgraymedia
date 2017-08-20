@@ -25,7 +25,7 @@ SECRET_KEY = '*(br=cmo_4n4l2!$v@2ufkjbt7%e6y-h(ws!(98lkz3-7i%q)v'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['emgraymedia.gq', 'www.emgraymedia.gq']
+ALLOWED_HOSTS = ['emgraymedia.gq', 'www.emgraymedia.gq', 'localhost']
 
 
 # Application definition

@@ -40,8 +40,11 @@ def login(request):
 
 	request.session['first_name'] = results['user'][0].first_name
 	request.session['last_name'] = results['user'][0].last_name
+	request.session['phone'] = results['user'][0].phone
 	request.session['email'] = results['user'][0].email
 	request.session['username'] = results['user'][0].username
+	request.session['city'] = results['user'][0].city
+	request.session['state'] = results['user'][0].state
 	request.session['user_id'] = results['user'][0].id
 	print request.session['user_id']
 	return redirect('/')

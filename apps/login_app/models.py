@@ -16,9 +16,18 @@ class UserManager(models.Manager):
 		if len(postData['last_name']) < 3 and len(postData['last_name']) > 50:
 			results['status'] = False
 			results['errors'].append('Last Name Must be at Least 3 Characters.')
-		if len(postData['username']) < 3  and len(postData['first_name']) > 20:
+		if len(postData['username']) < 3  and len(postData['username']) > 20:
 			results['status'] = False
 			results['errors'].append('Username Must be at Least 3 Characters.')
+		if len(postData['phone']) < 3  and len(postData['phone']) > 20:
+			results['status'] = False
+			results['errors'].append('Please Enter a Valid Phone Nember')
+		if len(postData['city']) < 3  and len(postData['city']) > 20:
+			results['status'] = False
+			results['errors'].append('City Name Must be at Least 3 Characters.')
+		if len(postData['state']) < 3  and len(postData['state']) > 20:
+			results['status'] = False
+			results['errors'].append('State Name Must be at Least 3 Characters.')
 		if not re.match(r"[^@]+@[^@]+\.[^@]+", postData['email']):
 			results['status'] = False
 			results['errors'].append('Please Enter a Valid Email.')
@@ -37,7 +46,7 @@ class UserManager(models.Manager):
 	def createUser(self, postData):
 		p_hash = bcrypt.hashpw(postData['password'].encode(), bcrypt.gensalt())
 		user = User.objects.create(
-		    first_name=postData['first_name'], last_name=postData['last_name'], username = postData['username'], email=postData['email'], password=p_hash,)
+		    first_name=postData['first_name'], last_name=postData['last_name'], username = postData['username'], phone=postData['phone'], email=postData['email'], city=postData['city'], state=postData['state'], password=p_hash,)
 		return user
 
 	def loginVal(self, postData):
@@ -59,7 +68,10 @@ class User(models.Model):
 	first_name = models.CharField(max_length=50)
 	last_name = models.CharField(max_length=50)
 	username = models.CharField(max_length=20)
+	phone  = models.CharField(max_length=20)
 	email = models.CharField(max_length=250)
+	city = models.CharField(max_length=50)
+	state = models.CharField(max_length=50)
 	password = models.CharField(max_length=50)
 	created_at = models.DateTimeField(auto_now_add=True)
 	updated_at = models.DateTimeField(auto_now = True)

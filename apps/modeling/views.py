@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from .models import Photo, Home, Contact
+from ..login_app.models import User
 from django.contrib import messages
 
 from django.shortcuts import render, redirect, HttpResponse
@@ -56,6 +57,9 @@ def account(request):
     "last": request.session['last_name'],
     "username": request.session['username'],
     "email": request.session['email'],
+	"city": request.session['city'],
+	"state": request.session['state'],
+	"phone": request.session['phone'],
     }
     return render(request, 'modeling/account.html', context)
 
