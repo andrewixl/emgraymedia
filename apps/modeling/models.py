@@ -55,6 +55,14 @@ class Home(models.Model):
     slide_3_title = models.CharField(max_length=100)
     slide_3_description = models.CharField(max_length=250)
     slide_3_button_text = models.CharField(max_length=75)
+
+    profile_picture = models.ImageField(
+        upload_to='media/', default='media/None/no-img.jpg')
+    profile_name = models.CharField(max_length=250)
+    profile_title = models.CharField(max_length=250)
+    profile_description_line_1 = models.CharField(max_length=250)
+    profile_description_line_2 = models.CharField(max_length=250)
+    profile_description_line_3 = models.CharField(max_length=250)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

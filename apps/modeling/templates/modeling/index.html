@@ -129,17 +129,17 @@
         <!-- Marketing messaging and featurettes
         ================================================== -->
         <!-- Wrap the rest of the page in another container to center all the content. -->
-
+        {%for new in new%}
         <div class="container marketing">
 
           <div class="row featurette">
             <div class="col-md-7 col-md-push-5">
-              <h2 class="featurette-heading">Emily Gray <br><span class="text-muted">Photographer and Model</span></h2>
-              <p class="lead">Body Positive Model <br>Portrait and Travel Photographer <br>Only Booking Within Greater Seattle Area</p>
+              <h2 class="featurette-heading">{{new.profile_name}}<br><span class="text-muted">{{new.profile_title}}</span></h2>
+              <p class="lead">{{new.profile_description_line_1}}<br>{{new.profile_description_line_2}}<br>{{new.profile_description_line_3}}</p>
             </div>
             <div class="col-md-5 col-md-pull-7">
               <!-- <img class="featurette-image img-responsive center-block" src="http://bit.ly/2hskPpO" alt="Generic placeholder image"> -->
-              <img class="featurette-image img-responsive center-block" src="http://bit.ly/2hskPpO" alt="Generic placeholder image">
+              <img class="featurette-image img-responsive center-block" src="media/{{new.profile_picture}}" alt="Generic placeholder image">
             </div>
           </div>
 
@@ -243,6 +243,7 @@
           </footer>
 
         </div><!-- /.container -->
+        {%endfor%}
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery.min.js"><\/script>')</script>
         <script src="{% static 'modeling/js/bootstrap.min.js' %}"></script>
