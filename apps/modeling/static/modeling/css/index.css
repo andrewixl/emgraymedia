@@ -24,6 +24,24 @@
 .list1{
   font-size: 20px;
 }
+.test{
+  overflow: hidden;
+}
+
+.crop {
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+}
+
+.crop img {
+    width: 400px;
+    height: 300px;
+    overflow: hidden;
+    /*margin: -75px 0 0 -100px;*/
+}
+
+.centered-and-cropped { object-fit: cover }
 
 /* GLOBAL STYLES
 -------------------------------------------------- */

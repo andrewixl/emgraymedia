@@ -12,7 +12,8 @@ import re
 
 class Album(models.Model):
     album_name = models.CharField(max_length=25)
-    # album_cover = models.ManyToManyField('Photo', related_name="photo")
+    album_cover = models.ImageField(
+        upload_to='media/', default='media/None/no-img.jpg')
     album_location = models.CharField(max_length=25)
     album_description = models.CharField(max_length=50)
     shoot_date = models.DateField(auto_now=False, auto_now_add=False)
@@ -27,7 +28,7 @@ class Photo(models.Model):
     photo = models.ImageField(
         upload_to='media/', default='media/None/no-img.jpg')
     photo_caption = models.CharField(max_length=25)
-    photo_description = models.CharField(max_length=50)
+    photo_description = models.CharField(max_length=150)
     master_album = models.ManyToManyField('Album', related_name="album")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -37,9 +38,23 @@ class Photo(models.Model):
 
 
 class Home(models.Model):
-    slide_1 = models.ManyToManyField('Photo', related_name="slide_1")
-    slide_2 = models.ManyToManyField('Photo', related_name="slide_2")
-    slide_3 = models.ManyToManyField('Photo', related_name="slide_3")
+    slide_1 = models.ImageField(
+        upload_to='media/', default='media/None/no-img.jpg')
+    slide_1_title = models.CharField(max_length=100)
+    slide_1_description = models.CharField(max_length=250)
+    slide_1_button_text = models.CharField(max_length=75)
+
+    slide_2 = models.ImageField(
+        upload_to='media/', default='media/None/no-img.jpg')
+    slide_2_title = models.CharField(max_length=100)
+    slide_2_description = models.CharField(max_length=250)
+    slide_2_button_text = models.CharField(max_length=75)
+
+    slide_3 = models.ImageField(
+        upload_to='media/', default='media/None/no-img.jpg')
+    slide_3_title = models.CharField(max_length=100)
+    slide_3_description = models.CharField(max_length=250)
+    slide_3_button_text = models.CharField(max_length=75)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

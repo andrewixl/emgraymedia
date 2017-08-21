@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from .models import Photo, Home, Contact
+from .models import Photo, Home, Contact, Album
 from ..login_app.models import User
 from django.contrib import messages
 
@@ -13,11 +13,11 @@ def genErrors(request, Emessages):
 
 
 def index(request):
-    images = Home.objects.all()
-    context = {
-    "image": images,
-    }
-    return render(request, 'modeling/index.html', context)
+	results2 = Home.objects.all()
+	context = {
+	"new":results2,
+	}
+	return render(request, 'modeling/index.html', context)
 
 
 def about(request):
@@ -79,3 +79,13 @@ def createcontact(request):
 
 def emailclient(request):
     return render(request, 'modeling/emailclient.html')
+
+def package(request):
+    return render(request, 'modeling/packagedetails.html')
+
+def album(request):
+    return render(request, 'modeling/album.html')
+
+def testing(request):
+
+	return render(request, 'modeling/testing.html', context)
