@@ -11,11 +11,11 @@ import re
 
 
 class Album(models.Model):
-    album_name = models.CharField(max_length=25)
+    album_name = models.CharField(max_length=50)
     album_cover = models.ImageField(
         upload_to='media/', default='media/None/no-img.jpg')
-    album_location = models.CharField(max_length=25)
-    album_description = models.CharField(max_length=50)
+    album_location = models.CharField(max_length=100)
+    album_description = models.CharField(max_length=350)
     shoot_date = models.DateField(auto_now=False, auto_now_add=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -29,13 +29,27 @@ class Photo(models.Model):
         upload_to='media/', default='media/None/no-img.jpg')
     photo_caption = models.CharField(max_length=25)
     photo_description = models.CharField(max_length=150)
-    master_album = models.ManyToManyField('Album', related_name="album")
+    master_album = models.ForeignKey(Album)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.photo_caption
 
+class Package(models.Model):
+    package_photo = models.ImageField(
+        upload_to='media/', default='media/None/no-img.jpg')
+    package_title = models.CharField(max_length=100)
+    package_quote_1 = models.CharField(max_length=100)
+    package_quote_2 = models.CharField(max_length=100)
+    package_cost = models.CharField(max_length=100)
+    package_description = models.CharField(max_length=500)
+    package_inclusions = models.CharField(max_length=500)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.package_title
 
 class Home(models.Model):
     slide_1 = models.ImageField(
@@ -63,6 +77,48 @@ class Home(models.Model):
     profile_description_line_1 = models.CharField(max_length=250)
     profile_description_line_2 = models.CharField(max_length=250)
     profile_description_line_3 = models.CharField(max_length=250)
+
+    modeling_album_1 = models.ForeignKey(Album, related_name="album1m")
+    modeling_album_2 = models.ForeignKey(Album, related_name="album2m")
+    modeling_album_3 = models.ForeignKey(Album, related_name="album3m")
+
+    photography_album_1 = models.ForeignKey(Album, related_name="album1p")
+    photography_album_2 = models.ForeignKey(Album, related_name="album2p")
+    photography_album_3 = models.ForeignKey(Album, related_name="album3p")
+
+    photography_package_1 = models.ForeignKey(Package, related_name="package1p")
+    photography_package_2 = models.ForeignKey(Package, related_name="package2p")
+    photography_package_3 = models.ForeignKey(Package, related_name="package3p")
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+class About(models.Model):
+    section_1_image = models.ImageField(
+        upload_to='media/', default='media/None/no-img.jpg')
+    section_1_title = models.CharField(max_length=500)
+    section_1_subtitle = models.CharField(max_length=500)
+    section_1_bullet_1 = models.CharField(max_length=500)
+    section_1_bullet_2 = models.CharField(max_length=500)
+    section_1_bullet_3 = models.CharField(max_length=500)
+
+    section_2_image  = models.ImageField(
+        upload_to='media/', default='media/None/no-img.jpg')
+    section_2_title = models.CharField(max_length=500)
+    section_2_subtitle = models.CharField(max_length=500)
+    section_2_description = models.CharField(max_length=500)
+
+    section_3_image  = models.ImageField(
+        upload_to='media/', default='media/None/no-img.jpg')
+    section_3_title = models.CharField(max_length=500)
+    section_3_subtitle = models.CharField(max_length=500)
+    section_3_description = models.CharField(max_length=500)
+
+    section_4_image  = models.ImageField(
+        upload_to='media/', default='media/None/no-img.jpg')
+    section_4_title = models.CharField(max_length=500)
+    section_4_subtitle = models.CharField(max_length=500)
+    section_4_description = models.CharField(max_length=500)
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
