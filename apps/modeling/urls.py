@@ -13,6 +13,6 @@ urlpatterns = [
     url(r'^createcontact$', views.createcontact),
     url(r'^email$', views.emailclient),
     url(r'^package$', views.package),
-    url(r'^album$', views.album),
+    url(r'^album/(?P<album_id>\d+)$', views.album),
     url(r'^testing$', views.testing),
 ]

@@ -102,6 +102,12 @@
             <img class="centered-and-cropped" width="200" height="200"
               style="" src="http://bit.ly/2vib6El" alt="Emily Headshot 2">
             </a>
+            {%for photos in photos%}
+            <a href="media/{{photos.photo}}"><img height="200" src="media/{{photos.photo}}" alt="Photo {{photos.id}}" style="display: none;">
+            <img class="centered-and-cropped" width="200" height="200"
+              style="" src="media/{{photos.photo}}" alt="Photo {{photos.id}}">
+            </a>
+            {%endfor%}
         </div>
 
           <!-- START THE FEATURETTES -->

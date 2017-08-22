@@ -87,8 +87,12 @@ def emailclient(request):
 def package(request):
     return render(request, 'modeling/packagedetails.html')
 
-def album(request):
-    return render(request, 'modeling/album.html')
+def album(request, album_id):
+	photo = Photo.objects.filter(master_album = album_id).all()
+	context = {
+	'photos' : photo,
+	}
+	return render(request, 'modeling/album.html', context)
 
 def testing(request):
 
