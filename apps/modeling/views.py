@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from .models import Photo, Home, Contact, Album
+from .models import Photo, Home, Contact, Album, About
 from ..login_app.models import User
 from django.contrib import messages
 
@@ -21,7 +21,11 @@ def index(request):
 
 
 def about(request):
-    return render(request, 'modeling/about.html')
+	results2 = About.objects.all()
+	context = {
+	"new2":results2,
+	}
+	return render(request, 'modeling/about.html', context)
 
 
 def modeling(request):
