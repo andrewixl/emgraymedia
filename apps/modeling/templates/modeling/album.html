@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     {% load staticfiles %}
     <link href="{% static 'modeling/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <!-- <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet"> -->
     <link href="{% static 'modeling/css/index.css' %}" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'modeling/css/blueimp-gallery.min.css' %}">
     <link rel="shortcut icon" href="{% static 'modeling/img/favicon.ico'%}" type="image/x-icon">
@@ -76,6 +78,7 @@
 
         <div class="container marketing">
           <br><br><br><br>
+          <!-- The Gallery as lightbox dialog, should be a child element of the document body -->
           <div id="blueimp-gallery" class="blueimp-gallery">
               <div class="slides"></div>
               <h3 class="title"></h3>
@@ -86,11 +89,23 @@
               <ol class="indicator"></ol>
           </div>
 
-          <div id="links" align="center">
-            {%for photos in photos%}
-            <a href="/media/{{photos.photo}}"><img height="200" src="/media/{{photos.photo}}" alt="Photo" style="display: none;">
+          <div id="links">
+            <a href="http://bit.ly/2wxeY8O"><img height="200" src="http://bit.ly/2wxeY8O" alt="Emily Headshot 1" style="display: none;">
             <img class="centered-and-cropped" width="200" height="200"
-              style="" src="/media/{{photos.photo}}" alt="Photo">
+              style="" src="http://bit.ly/2wxeY8O" alt="Emily Headshot 1">
+            </a>
+            <a href="http://bit.ly/2viHF4Y"><img height="200" src="http://bit.ly/2viHF4Y" alt="Emily Headshot 2" style="display: none;">
+            <img class="centered-and-cropped" width="200" height="200"
+              style="" src="http://bit.ly/2viHF4Y" alt="Emily Headshot 2">
+            </a>
+            <a href="http://bit.ly/2vib6El"><img height="200" src="http://bit.ly/2vib6El" alt="Emily Headshot 2" style="display: none;">
+            <img class="centered-and-cropped" width="200" height="200"
+              style="" src="http://bit.ly/2vib6El" alt="Emily Headshot 2">
+            </a>
+            {%for photos in photos%}
+            <a href="media/{{photos.photo}}"><img height="200" src="media/{{photos.photo}}" alt="Photo {{photos.id}}" style="display: none;">
+            <img class="centered-and-cropped" width="200" height="200"
+              style="" src="media/{{photos.photo}}" alt="Photo {{photos.id}}">
             </a>
             {%endfor%}
         </div>
@@ -130,7 +145,9 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery.min.js"><\/script>')</script>
         <script src="{% static 'modeling/js/bootstrap.min.js' %}"></script>
+        <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
         <script src="{% static 'modeling/js/holder.min.js' %}"></script>
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
         <script src="{% static 'modeling/js/ie10-viewport-bug-workaround.js' %}"></script>
         <script src="{% static 'modeling/js/blueimp-gallery.min.js' %}"></script>
   </body>
