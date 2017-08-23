@@ -89,23 +89,11 @@
               <ol class="indicator"></ol>
           </div>
 
-          <div id="links">
-            <a href="http://bit.ly/2wxeY8O"><img height="200" src="http://bit.ly/2wxeY8O" alt="Emily Headshot 1" style="display: none;">
-            <img class="centered-and-cropped" width="200" height="200"
-              style="" src="http://bit.ly/2wxeY8O" alt="Emily Headshot 1">
-            </a>
-            <a href="http://bit.ly/2viHF4Y"><img height="200" src="http://bit.ly/2viHF4Y" alt="Emily Headshot 2" style="display: none;">
-            <img class="centered-and-cropped" width="200" height="200"
-              style="" src="http://bit.ly/2viHF4Y" alt="Emily Headshot 2">
-            </a>
-            <a href="http://bit.ly/2vib6El"><img height="200" src="http://bit.ly/2vib6El" alt="Emily Headshot 2" style="display: none;">
-            <img class="centered-and-cropped" width="200" height="200"
-              style="" src="http://bit.ly/2vib6El" alt="Emily Headshot 2">
-            </a>
+          <div id="links" align="center">
             {%for photos in photos%}
-            <a href="media/{{photos.photo}}"><img height="200" src="media/{{photos.photo}}" alt="Photo {{photos.id}}" style="display: none;">
+            <a href="https://emgraymedia.s3.amazonaws.com/media/{{photos.photo}}"><img height="200" src="https://emgraymedia.s3.amazonaws.com/media/{{photos.photo}}" alt="Photo {{photos.id}}" style="display: none;">
             <img class="centered-and-cropped" width="200" height="200"
-              style="" src="media/{{photos.photo}}" alt="Photo {{photos.id}}">
+              style="" src="https://emgraymedia.s3.amazonaws.com/media/{{photos.photo}}" alt="Photo {{photos.id}}">
             </a>
             {%endfor%}
         </div>
