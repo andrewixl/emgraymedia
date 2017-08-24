@@ -97,6 +97,10 @@ class Home(models.Model):
     modeling_album_2 = models.ForeignKey(Album, related_name="album2m")
     modeling_album_3 = models.ForeignKey(Album, related_name="album3m")
 
+    collaborations_album_1 = models.ForeignKey(Album, related_name="album1c")
+    collaborations_album_2 = models.ForeignKey(Album, related_name="album2c")
+    collaborations_album_3 = models.ForeignKey(Album, related_name="album3c")
+
     photography_album_1 = models.ForeignKey(Album, related_name="album1p")
     photography_album_2 = models.ForeignKey(Album, related_name="album2p")
     photography_album_3 = models.ForeignKey(Album, related_name="album3p")

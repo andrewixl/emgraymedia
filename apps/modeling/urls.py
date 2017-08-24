@@ -12,7 +12,7 @@ urlpatterns = [
     url(r'^collaborations$', views.collaborations),
     url(r'^createcontact$', views.createcontact),
     url(r'^email$', views.emailclient),
-    url(r'^package$', views.package),
+    url(r'^packagedetails/(?P<package_id>\d+)$', views.package),
     url(r'^album/(?P<album_id>\d+)$', views.album),
     url(r'^editprofile$', views.editprofile),
     url(r'^editprofiledata$', views.editprofiledata),

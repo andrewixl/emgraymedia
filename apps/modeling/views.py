@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from .models import Photo, Home, Contact, Album, About
+from .models import Photo, Home, Contact, Album, About, Package
 from ..login_app.models import User
 from django.contrib import messages
 
@@ -84,8 +84,12 @@ def createcontact(request):
 def emailclient(request):
     return render(request, 'modeling/emailclient.html')
 
-def package(request):
-    return render(request, 'modeling/packagedetails.html')
+def package(request, package_id):
+	package = Package.objects.get(id = package_id)
+	context = {
+	'package' : package,
+	}
+	return render(request, 'modeling/packagedetails.html', context)
 
 def album(request, album_id):
 	photo = Photo.objects.filter(master_album = album_id).all()
