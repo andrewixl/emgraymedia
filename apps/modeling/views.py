@@ -94,6 +94,34 @@ def album(request, album_id):
 	}
 	return render(request, 'modeling/album.html', context)
 
+def editprofile(request):
+	profile = User.objects.get(id = request.session['user_id'])
+	context = {
+		"profile":profile,
+	}
+	return render(request, 'modeling/editprofile.html', context)
+
+def editprofiledata(request):
+	p = User.objects.get(id = request.session['user_id'])
+	p.first_name = request.POST['first_name']
+	p.last_name = request.POST['last_name']
+	p.username = request.POST['username']
+	p.phone = request.POST['phone']
+	p.email = request.POST['email']
+	p.city = request.POST['city']
+	p.state = request.POST['state']
+
+	request.session['first_name'] = request.POST['first_name']
+	request.session['last_name'] = request.POST['last_name']
+	request.session['username'] = request.POST['username']
+	request.session['phone'] = request.POST['phone']
+	request.session['email'] = request.POST['email']
+	request.session['city'] = request.POST['city']
+	request.session['state'] = request.POST['state']
+	# p.updated_at =
+	p.save()
+	return redirect('/account')
+
 def testing(request):
 
 	return render(request, 'modeling/testing.html', context)

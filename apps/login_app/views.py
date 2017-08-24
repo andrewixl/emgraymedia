@@ -21,11 +21,11 @@ def register(request):
 	except KeyError:
 		pass
 	results = User.objects.registerVal(request.POST)
+ 	request.session['status'] = results['status']
 	if results['status'] == True:
 		user = User.objects.createUser(request.POST)
 		messages.success(request, 'User Registered! Please Log In.')
-	else:
-		genErrors(request, results['errors'])
+	genErrors(request, results['errors'])
 	return redirect('/login')
 def login(request):
 	try:
@@ -34,6 +34,7 @@ def login(request):
 	except KeyError:
 		pass
 	results = User.objects.loginVal(request.POST)
+	request.session['status'] = results['status']
 	if results['status'] == False:
 		genErrors(request, results['errors'])
 		return redirect('/login')
@@ -48,7 +49,6 @@ def login(request):
 	request.session['user_id'] = results['user'][0].id
 	print request.session['user_id']
 	return redirect('/')
-
 
 def logout(request):
 	request.session.flush()

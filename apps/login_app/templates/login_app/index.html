@@ -13,6 +13,19 @@
   </head>
   <body>
 				<div class="container">
+          {%if messages%}
+            {%for message in messages%}
+              {%if request.session.status == False%}
+                <div class="alert alert-danger" role="alert">
+                  <strong>Error!</strong> {{message}}
+                </div>
+              {%elif request.session.status == True%}
+                <div class="alert alert-success" role="alert">
+                  <strong>Success!</strong> User Registered! Please Log In.
+                </div>
+              {%endif%}
+            {%endfor%}
+          {%endif%}
 
 					<form class="form-signin" action='/login/login' method='post'>
 						{%csrf_token%}

@@ -72,27 +72,33 @@
         </div>
 
         <div class="container marketing">
-          <br><br><br>
-          <div class="jumbotron">
-            <div class="row">
-              <div class="col-md-4 col-xs-12 col-sm-6 col-lg-4">
-                <img src="https://www.svgimages.com/svg-image/s5/man-passportsize-silhouette-icon-256x256.png" alt="stack photo" class="img">
-              </div>
-              <div class="col-md-8 col-xs-12 col-sm-6 col-lg-8">
-                <div class="container" style="border-bottom:1px solid black">
-                  <h2>{{first}} {{last}} ({{username}})</h2>
-                </div>
-                <hr>
-                <ul class="container details">
-                  <li><p><span class="glyphicon glyphicon-earphone one" style="width:50px;"></span>{{phone}}</p></li>
-                  <li><p><span class="glyphicon glyphicon-envelope one" style="width:50px;"></span>{{email}}</p></li>
-                  <li><p><span class="glyphicon glyphicon-map-marker one" style="width:50px;"></span>{{city}}, {{state}}</p></li>
-                  <li><p><span class="glyphicon glyphicon-new-window one" style="width:50px;"></span><a href="#">www.example.com</p></a>
-                  <a href="/editprofile"><button type="button" name="button">Update Profile</button></a>
-                </ul>
-              </div>
-            </div>
-          </div>
+          <br><br><br><br><br>
+          <form class="form-signin" action='/editprofiledata' method='post'>
+  					{%csrf_token%}
+            <h2 class="form-signin-heading">Update Profile</h2>
+  					<label for="inputEmail" class="sr-only">First Name</label>
+  					<input type="text" id="inputEmail" class="form-control" name="first_name" placeholder="First Name" required autofocus value="{{profile.first_name}}">
+
+  					<label for="inputEmail" class="sr-only">Last Name</label>
+  					<input type="text" id="inputEmail" class="form-control" name="last_name" placeholder="Last Name" required autofocus value="{{profile.last_name}}">
+
+  					<label for="inputEmail" class="sr-only">Username</label>
+  					<input type="text" id="inputEmail" class="form-control" name="username" placeholder="Username" required autofocus value="{{profile.username}}">
+
+            <label for="inputEmail" class="sr-only">Phone Number</label>
+  					<input type="tel" id="inputEmail" class="form-control" name="phone" placeholder="Phone Number" required autofocus value="{{profile.phone}}">
+
+  					<label for="inputEmail" class="sr-only">Email</label>
+  					<input type="email" id="inputEmail" class="form-control" name="email" placeholder="Email" required autofocus value="{{profile.email}}">
+
+            <label for="inputEmail" class="sr-only">City</label>
+  					<input type="text" id="inputEmail" class="form-control" name="city" placeholder="City" required autofocus value="{{profile.city}}">
+
+            <label for="inputEmail" class="sr-only">State</label>
+  					<input type="text" id="inputEmail" class="form-control" name="state" placeholder="State" required autofocus value="{{profile.state}}">
+  					<br>
+  					<button class="btn btn-lg btn-primary btn-block" type="submit" value='Register'>Update</button>
+  				</form>
 
           <hr class="featurette-divider">
 

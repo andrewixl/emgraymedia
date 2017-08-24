@@ -51,6 +51,21 @@ class Package(models.Model):
     def __str__(self):
         return self.package_title
 
+class Navbar(models.Model):
+    about_1 = models.CharField(max_length=45)
+    about_2 = models.CharField(max_length=45)
+    about_3 = models.CharField(max_length=45)
+    about_4 = models.CharField(max_length=45)
+    portfolio_header_1 = models.CharField(max_length=45)
+    portfolio_1_action_1 = models.ForeignKey(Album, related_name="album1_1")
+    portfolio_1_action_2 = models.ForeignKey(Album, related_name="album1_2")
+    portfolio_header_2 = models.CharField(max_length=45)
+    portfolio_2_action_1 = models.ForeignKey(Album, related_name="album2_1")
+    portfolio_2_action_2 = models.ForeignKey(Album, related_name="album2_2")
+    portfolio_header_3 = models.CharField(max_length=45)
+    portfolio_3_action_1 = models.ForeignKey(Album, related_name="album3_1")
+    portfolio_3_action_2 = models.ForeignKey(Album, related_name="album3_2")
+
 class Home(models.Model):
     slide_1 = models.ImageField(
         upload_to='media/', default='media/None/no-img.jpg')
@@ -121,6 +136,11 @@ class About(models.Model):
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+class ContactPage(models.Model):
+    city = models.CharField(max_length=100)
+    state = models.CharField(max_length=100)
+    email = models.CharField(max_length=100)
 
 class ContactManager(models.Manager):
     def createContact(self, postData, user_id):
