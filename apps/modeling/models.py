@@ -76,24 +76,31 @@ class Navbar(models.Model):
     portfolio_3_action_1 = models.ForeignKey(Album, related_name="album3_1")
     portfolio_3_action_2 = models.ForeignKey(Album, related_name="album3_2")
 
+    class Meta:
+        verbose_name = _("Navigation Bar")
+        verbose_name_plural = _("Navigation Bar")
+
 class Home(models.Model):
     slide_1 = models.ImageField(
         upload_to='media/', default='media/None/no-img.jpg')
     slide_1_title = models.CharField(max_length=100)
     slide_1_description = models.CharField(max_length=250)
     slide_1_button_text = models.CharField(max_length=75)
+    slide_1_button_link = models.CharField(max_length=500)
 
     slide_2 = models.ImageField(
         upload_to='media/', default='media/None/no-img.jpg')
     slide_2_title = models.CharField(max_length=100)
     slide_2_description = models.CharField(max_length=250)
     slide_2_button_text = models.CharField(max_length=75)
+    slide_2_button_link = models.CharField(max_length=500)
 
     slide_3 = models.ImageField(
         upload_to='media/', default='media/None/no-img.jpg')
     slide_3_title = models.CharField(max_length=100)
     slide_3_description = models.CharField(max_length=250)
     slide_3_button_text = models.CharField(max_length=75)
+    slide_3_button_link = models.CharField(max_length=500)
 
     profile_picture = models.ImageField(
         upload_to='media/', default='media/None/no-img.jpg')
@@ -120,6 +127,10 @@ class Home(models.Model):
     photography_package_3 = models.ForeignKey(Package, related_name="package3p")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = _("Home Page")
+        verbose_name_plural = _("Home Page")
 
 class About(models.Model):
     section_1_image = models.ImageField(
@@ -151,10 +162,28 @@ class About(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        verbose_name = _("About Page")
+        verbose_name_plural = _("About Page")
+
 class ContactPage(models.Model):
     city = models.CharField(max_length=100)
     state = models.CharField(max_length=100)
     email = models.CharField(max_length=100)
+
+    class Meta:
+        verbose_name = _("Contact Page")
+        verbose_name_plural = _("Contact Page")
+
+class Promotion(models.Model):
+    promotion_name = models.CharField(max_length=250)
+    promotion_percent = models.IntegerField()
+    promotion_start_date = models.DateTimeField(auto_now=False)
+    promotion_end_date = models.DateTimeField(auto_now=False)
+    promotion_terms = models.CharField(max_length=500)
+
+    def __str__(self):
+        return self.promotion_name
 
 class ContactManager(models.Manager):
     def createContact(self, postData, user_id):
@@ -216,6 +245,10 @@ class Contact(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     objects = ContactManager()
+
+    class Meta:
+        verbose_name = _("Contact Response")
+        verbose_name_plural = _("Contact Responses")
 
     def __str__(self):
         return self.contact_subject

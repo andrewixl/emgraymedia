@@ -47,6 +47,7 @@ def login(request):
 	request.session['city'] = results['user'][0].city
 	request.session['state'] = results['user'][0].state
 	request.session['user_id'] = results['user'][0].id
+	request.session['instagram'] = results['user'][0].instagram
 	print request.session['user_id']
 	return redirect('/')
 

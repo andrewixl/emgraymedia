@@ -16,5 +16,5 @@ urlpatterns = [
     url(r'^album/(?P<album_id>\d+)$', views.album),
     url(r'^editprofile$', views.editprofile),
     url(r'^editprofiledata$', views.editprofiledata),
-    url(r'^testing$', views.testing),
+    url(r'^promotions$', views.promotions),
 ]

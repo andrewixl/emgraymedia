@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from .models import Picture, Home, Contact, Album, About, Package
+from .models import Picture, Home, Contact, Album, About, Package, Promotion, ContactPage, Navbar
 from ..login_app.models import User
 from django.contrib import messages
 
@@ -14,30 +14,46 @@ def genErrors(request, Emessages):
 
 def index(request):
 	results2 = Home.objects.all()
+	nav = Navbar.objects.all()
 	context = {
 	"new":results2,
+	"nav":nav,
 	}
 	return render(request, 'modeling/index.html', context)
 
 
 def about(request):
 	results2 = About.objects.all()
+	nav = Navbar.objects.all()
 	context = {
 	"new2":results2,
+	"nav":nav,
 	}
 	return render(request, 'modeling/about.html', context)
 
 
 def modeling(request):
-    return render(request, 'modeling/pmodeling.html')
+	nav = Navbar.objects.all()
+	context = {
+	"nav":nav,
+	}
+	return render(request, 'modeling/pmodeling.html', context)
 
 
 def photography(request):
-    return render(request, 'modeling/pphotography.html')
+	nav = Navbar.objects.all()
+	context = {
+	"nav":nav,
+	}
+	return render(request, 'modeling/pphotography.html', context)
 
 
 def collaborations(request):
-    return render(request, 'modeling/pcollaborations.html')
+	nav = Navbar.objects.all()
+	context = {
+	"nav":nav,
+	}
+	return render(request, 'modeling/pcollaborations.html', context)
 
 
 def book(request):
@@ -45,27 +61,40 @@ def book(request):
         request.session['user_id']
     except KeyError:
         return redirect("/login")
-    return render(request, 'modeling/book.html')
+	nav = Navbar.objects.all()
+	context = {
+	"nav":nav,
+	}
+	return render(request, 'modeling/book.html', context)
 
 
 def contact(request):
-	return render(request, 'modeling/contact.html')
+	nav = Navbar.objects.all()
+	contact = ContactPage.objects.all()
+	context = {
+	"contact" : contact,
+	"nav":nav,
+	}
+	return render(request, 'modeling/contact.html', context)
 
 def account(request):
-    try:
-        request.session['user_id']
-    except KeyError:
-        return redirect("/login")
-    context = {
-    "first": request.session['first_name'],
-    "last": request.session['last_name'],
-    "username": request.session['username'],
-    "email": request.session['email'],
-	"city": request.session['city'],
-	"state": request.session['state'],
-	"phone": request.session['phone'],
-    }
-    return render(request, 'modeling/account.html', context)
+	try:
+		request.session['user_id']
+	except KeyError:
+		return redirect("/login")
+	nav = Navbar.objects.all()
+	context = {
+		"first": request.session['first_name'],
+		"last": request.session['last_name'],
+		"username": request.session['username'],
+		"email": request.session['email'],
+		"city": request.session['city'],
+		"state": request.session['state'],
+		"phone": request.session['phone'],
+		"instagram": request.session['instagram'],
+		"nav":nav,
+	}
+	return render(request, 'modeling/account.html', context)
 
 def createcontact(request):
 	try:
@@ -74,9 +103,6 @@ def createcontact(request):
 	except KeyError:
 		pass
 	results = Contact.objects.createContact(request.POST, request.session['user_id'])
-	# context = {
-    # "result" : results['status'],
-    # }
 	request.session['contactstatus'] = results['status']
 	genErrors(request, results['errors'])
 	return redirect('/contact')
@@ -86,22 +112,30 @@ def emailclient(request):
 
 def package(request, package_id):
 	package = Package.objects.get(id = package_id)
+	nav = Navbar.objects.all()
 	context = {
 	'package' : package,
+	"nav":nav,
 	}
 	return render(request, 'modeling/packagedetails.html', context)
 
 def album(request, album_id):
+	album = Album.objects.get(id = album_id)
 	photo = Picture.objects.filter(master_album = album_id).all()
+	nav = Navbar.objects.all()
 	context = {
 	'photos' : photo,
+	'album' : album,
+	"nav":nav,
 	}
 	return render(request, 'modeling/album.html', context)
 
 def editprofile(request):
 	profile = User.objects.get(id = request.session['user_id'])
+	nav = Navbar.objects.all()
 	context = {
 		"profile":profile,
+		"nav":nav,
 	}
 	return render(request, 'modeling/editprofile.html', context)
 
@@ -126,6 +160,11 @@ def editprofiledata(request):
 	p.save()
 	return redirect('/account')
 
-def testing(request):
-
-	return render(request, 'modeling/testing.html', context)
+def promotions(request):
+	promotions = Promotion.objects.all()
+	nav = Navbar.objects.all()
+	context = {
+	"promotion" : promotions,
+	"nav":nav,
+	}
+	return render(request, 'modeling/promotions.html', context)

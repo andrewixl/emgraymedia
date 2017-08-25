@@ -18,6 +18,7 @@
   <body>
     <!-- NAVBAR
     ================================================== -->
+        {%for nav in nav%}
         <div class="navbar-wrapper">
           <div class="container">
 
@@ -38,28 +39,28 @@
                     <li class="dropdown">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About<span class="caret"></span></a>
                       <ul class="dropdown-menu">
-                        <li><a href="/about">Who Am I?</a></li>
-                        <li><a href="/about#being_body_positive">Being Body Positive</a></li>
-                        <li><a href="/about#my_camera">My Camera</a></li>
-                        <li><a href="/about#editing_photos">Editing Photos</a></li>
+                        <li><a href="/about">{{nav.about_1}}</a></li>
+                        <li><a href="/about#being_body_positive">{{nav.about_2}}</a></li>
+                        <li><a href="/about#my_camera">{{nav.about_3}}</a></li>
+                        <li><a href="/about#editing_photos">{{nav.about_4}}</a></li>
                       </ul>
                     </li>
                     <li class="dropdown">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Portfolio<span class="caret"></span></a>
                       <ul class="dropdown-menu">
-                        <li class="dropdown-header">Modeling</li>
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
+                        <li class="dropdown-header">{{nav.portfolio_header_1}}</li>
+                        <li><a href="/album/{{nav.portfolio_1_action_1.id}}">{{nav.portfolio_1_action_1.album_name}}</a></li>
+                        <li><a href="/album/{{nav.portfolio_1_action_2.id}}">{{nav.portfolio_1_action_2.album_name}}</a></li>
                         <li><a href="/modeling">View All →</a></li>
                         <li role="separator" class="divider"></li>
-                        <li class="dropdown-header">Collaborations</li>
-                        <li><a href="#">Separated link</a></li>
-                        <li><a href="#">One more separated link</a></li>
+                        <li class="dropdown-header">{{nav.portfolio_header_2}}</li>
+                        <li><a href="/album/{{nav.portfolio_2_action_1.id}}">{{nav.portfolio_1_action_1.album_name}}</a></li>
+                        <li><a href="/album/{{nav.portfolio_2_action_2.id}}">{{nav.portfolio_1_action_2.album_name}}</a></li>
                         <li><a href="/collaborations">View All →</a></li>
                         <li role="separator" class="divider"></li>
-                        <li class="dropdown-header">Photography</li>
-                        <li><a href="#">Separated link</a></li>
-                        <li><a href="#">One more separated link</a></li>
+                        <li class="dropdown-header">{{nav.portfolio_header_3}}</li>
+                        <li><a href="/album/{{nav.portfolio_3_action_1.id}}">{{nav.portfolio_1_action_1.album_name}}</a></li>
+                        <li><a href="/album/{{nav.portfolio_3_action_2.id}}">{{nav.portfolio_1_action_2.album_name}}</a></li>
                         <li><a href="/photography">View All →</a></li>
                       </ul>
                     </li>
@@ -71,8 +72,10 @@
               </div>
             </nav>
 
+
           </div>
         </div>
+        {%endfor%}
         <div class="container marketing">
           <!-- CONTACT US -->
           <section id="contact" >
@@ -110,18 +113,18 @@
                     </form>
                   </div>
                 </div>
-
+                {%for contact in contact%}
                 <div id="section1">
                   <h2 id="h2contact">Other Info:</h2>
                   <div class="info">
                     <div>
                       <i class="fa fa-map-marker"></i>
-                      <p>Seattle, WA</p>
+                      <p>{{contact.city}}, {{contact.state}}</p>
                     </div>
 
                     <div>
                       <i class="fa fa-envelope"></i>
-                      <p>contact@emgraymedia.gq</p>
+                      <p>{{contact.email}}</p>
                     </div>
 
                     <!-- <div>
@@ -131,6 +134,7 @@
 
                   </div>
                 </div>
+                {%endfor%}
                 <h6 align='center'>A Copy of The Sent Message Will Be Sent to the Email You Listed Above.</h6>
               </div>
             </div>

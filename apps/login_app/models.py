@@ -28,6 +28,9 @@ class UserManager(models.Manager):
 		if len(postData['state']) < 3  and len(postData['state']) > 20:
 			results['status'] = False
 			results['errors'].append('State Name Must be at Least 3 Characters.')
+		if len(postData['instagram']) < 2:
+			results['status'] = False
+			results['errors'].append('Instagram Handle Must be at Least 2 Characters.')
 		if not re.match(r"[^@]+@[^@]+\.[^@]+", postData['email']):
 			results['status'] = False
 			results['errors'].append('Please Enter a Valid Email.')
@@ -46,7 +49,7 @@ class UserManager(models.Manager):
 	def createUser(self, postData):
 		p_hash = bcrypt.hashpw(postData['password'].encode(), bcrypt.gensalt())
 		user = User.objects.create(
-		    first_name=postData['first_name'], last_name=postData['last_name'], username = postData['username'], phone=postData['phone'], email=postData['email'], city=postData['city'], state=postData['state'], password=p_hash,)
+		    first_name=postData['first_name'], last_name=postData['last_name'], username = postData['username'], phone=postData['phone'], email=postData['email'], city=postData['city'], state=postData['state'], instagram=postData['instagram'], password=p_hash,)
 		return user
 
 	def loginVal(self, postData):
@@ -72,7 +75,8 @@ class User(models.Model):
 	email = models.CharField(max_length=250)
 	city = models.CharField(max_length=50)
 	state = models.CharField(max_length=50)
-	password = models.CharField(max_length=50)
+	instagram = models.CharField(max_length=100)
+	password = models.CharField(max_length=100)
 	created_at = models.DateTimeField(auto_now_add=True)
 	updated_at = models.DateTimeField(auto_now = True)
 	objects = UserManager()

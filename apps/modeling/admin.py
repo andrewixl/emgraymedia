@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Album, Picture, Home, Contact, Package, About, Navbar
+from .models import Album, Picture, Home, Contact, Package, About, Navbar, Promotion, ContactPage
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
 from django.utils.text import force_text
@@ -54,4 +54,6 @@ admin.site.register(Contact)
 admin.site.register(Package)
 admin.site.register(About)
 admin.site.register(Navbar)
+admin.site.register(Promotion)
+admin.site.register(ContactPage)
 # Register your models here.
