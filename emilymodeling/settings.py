@@ -26,7 +26,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['emgraymedia.gq', 'www.emgraymedia.gq', 'localhost']
+ALLOWED_HOSTS = ['emgraymedia.gq', 'www.emgraymedia.gq', '52.27.250.145']
 
 
 # Application definition
@@ -165,3 +165,4 @@ STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, STATICFILES_LOCATION)
 MEDIAFILES_LOCATION = 'media'
 MEDIA_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
 DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")
