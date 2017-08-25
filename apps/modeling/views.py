@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from .models import Photo, Home, Contact, Album, About, Package
+from .models import Picture, Home, Contact, Album, About, Package
 from ..login_app.models import User
 from django.contrib import messages
 
@@ -92,7 +92,7 @@ def package(request, package_id):
 	return render(request, 'modeling/packagedetails.html', context)
 
 def album(request, album_id):
-	photo = Photo.objects.filter(master_album = album_id).all()
+	photo = Picture.objects.filter(master_album = album_id).all()
 	context = {
 	'photos' : photo,
 	}

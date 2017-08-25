@@ -8,30 +8,40 @@ from django.core.exceptions import ValidationError
 from django.core.mail import send_mail
 from django.conf import settings
 import re
+from django import forms
+from django.utils.encoding import python_2_unicode_compatible
+from django.utils.translation import ugettext_lazy as _
 
-
+@python_2_unicode_compatible
 class Album(models.Model):
-    album_name = models.CharField(max_length=50)
+    album_name = models.CharField(_("Name"), max_length=255)
     album_cover = models.ImageField(
-        upload_to='media/', default='media/None/no-img.jpg')
-    album_location = models.CharField(max_length=100)
-    album_description = models.CharField(max_length=350)
-    shoot_date = models.DateField(auto_now=False, auto_now_add=False)
+         _("Album Cover (240px x 240px)"), upload_to='media/', default='media/None/no-img.jpg')
+    album_location = models.CharField(_("Location"),max_length=150)
+    album_description = models.CharField(_("Description"),max_length=350)
+    album_photographer = models.CharField(_("Photographer (Instagram Handle)"),max_length=350)
+    shoot_date = models.DateField(_("Shoot Date"),auto_now=False, auto_now_add=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = _("Album")
+        verbose_name_plural = _("Albums")
 
     def __str__(self):
         return self.album_name
 
-
-class Photo(models.Model):
-    photo = models.ImageField(
-        upload_to='media/', default='media/None/no-img.jpg')
-    photo_caption = models.CharField(max_length=100)
-    photo_description = models.CharField(max_length=150)
-    master_album = models.ForeignKey(Album)
+@python_2_unicode_compatible
+class Picture(models.Model):
+    master_album = models.ForeignKey(Album, verbose_name=_("Album"), on_delete=models.CASCADE)
+    photo_caption = models.CharField(_("Caption"), max_length=255)
+    photo = models.ImageField(_("Picture"), upload_to='media/')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = _("Picture")
+        verbose_name_plural = _("Pictures")
 
     def __str__(self):
         return self.photo_caption
