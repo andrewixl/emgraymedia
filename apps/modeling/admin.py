@@ -36,7 +36,7 @@ class PictureInline(admin.StackedInline):
 @admin.register(Album)
 class AlbumAdmin(admin.ModelAdmin):
     save_on_top = True
-    fields = ["album_name", "album_cover", "album_location", "album_description", "album_photographer", "shoot_date"]
+    fields = ["album_name", "album_cover", "album_location", "album_description", "album_photographer", "shoot_date", "album_type",]
     inlines = [PictureInline]
 
 @admin.register(Picture)
