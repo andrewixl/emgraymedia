@@ -181,6 +181,7 @@ class Promotion(models.Model):
     promotion_start_date = models.DateTimeField(auto_now=False)
     promotion_end_date = models.DateTimeField(auto_now=False)
     promotion_terms = models.CharField(max_length=500)
+    promotion_link = models.CharField(max_length=500)
 
     def __str__(self):
         return self.promotion_name

@@ -57,10 +57,10 @@ def collaborations(request):
 
 
 def book(request):
-    try:
-        request.session['user_id']
-    except KeyError:
-        return redirect("/login")
+	try:
+		request.session['user_id']
+	except KeyError:
+		return redirect("/login")
 	nav = Navbar.objects.all()
 	context = {
 	"nav":nav,
