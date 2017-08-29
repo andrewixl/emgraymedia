@@ -254,3 +254,70 @@ class Contact(models.Model):
 
     def __str__(self):
         return self.contact_subject
+
+class BookingManager(models.Manager):
+    def createBooking(self, postData, user_id, email):
+        results = {'status': True, 'errors': [], 'user': None}
+        print postData
+        if len(postData['location']) < 3:
+            results['status'] = False
+            results['errors'].append('Location Name Must be at Least 3 Characters.')
+        if len(postData['length']):
+            results['status'] = False
+            results['errors'].append('Please Enter a Valid Number of Hours.')
+            userInt = int(user_id)
+            user = User.objects.get(id=userInt)
+            package = Package.objects.get(package_title = postData['package'])
+            results['person'] = Booking.objects.create(
+                package=package, date_1=postData['date_1'], date_2=postData['date_2'], date_3=postData['date_3'],
+                time_of_day=postData['time_of_day'], location=postData['location'], length_of_shoot=postData['length'],
+                booker=user)
+            subject = "Scheduling a Session for a " + postData['package']
+            from_email = settings.DEFAULT_FROM_EMAIL
+            message = ''
+            recipient_list = ['andrew@emgraymedia.gq',
+                              'emily@emgraymedia.gq', 'contact@emgraymedia.gq', email]
+            html_message = '''<h4>Booker:</h4>
+                              <h4>{booker.first_name} {booker.last_name}</h4><br>
+                              <h4>Package:</h4>
+                              <h4>{package}</h4><br>
+                              <h4>Date 1: </h4>
+                              <h4>{date_1}</h4><br>
+                              <h4>Date 2: </h4>
+                              <h4>{date_2}</h4><br>
+                              <h4>Date 3: </h4>
+                              <h4>{date_3}</h4><br>
+                              <h4>Time of Day: </h4>
+                              <h4>{time_of_day}</h4><br>
+                              <h4>Location: </h4>
+                              <h4>{location}</h4><br>
+                              <h4>Length of Shoot: </h4>
+                              <h4>{length_of_shoot} Hrs</h4><br>
+                              <h5>This is a Copy of the Sent Message From the Contact Form on emgraymedia.gq/contact</h5> '''.format(
+                              package=postData['package'], date_1=postData['date_1'], date_2=postData['date_2'], date_3=postData['date_3'],
+                              location=postData['location'], length_of_shoot=postData['length'], time_of_day=postData['time_of_day'], booker=user)
+
+            send_mail(subject, message, from_email, recipient_list,
+                      fail_silently=False, html_message=html_message)
+        return results
+
+
+class Booking(models.Model):
+    package = models.ForeignKey(Package, related_name='package')
+    date_1 = models.DateTimeField(auto_now=False)
+    date_2 = models.DateTimeField(auto_now=False)
+    date_3 = models.DateTimeField(auto_now=False)
+    time_of_day = models.CharField(max_length=500)
+    location = models.CharField(max_length=1000)
+    length_of_shoot = models.FloatField(max_length=10)
+    booker = models.ForeignKey(User)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    objects = BookingManager()
+
+    class Meta:
+        verbose_name = _("Bookings")
+        verbose_name_plural = _("Bookings")
+
+    def __str__(self):
+        return self.booker.first_name + " " + self.booker.last_name + ": " + self.package.package_title

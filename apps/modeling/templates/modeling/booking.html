@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load staticfiles %}
+    <link href="{% static 'modeling/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <!-- <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet"> -->
+    <link href="{% static 'modeling/css/index.css' %}" rel="stylesheet">
+    <link rel="shortcut icon" href="{% static 'modeling/img/favicon.ico'%}" type="image/x-icon">
+    <title>Em Gray Media</title>
+  </head>
+  <style media="screen">
+    /*.carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img{
+      max-width: none;
+    }*/
+    .carousel-inner>.item>a>img, .carousel-inner>.item>img{
+      max-width: none;
+    }
+    /*.ing123{
+      max-width: none;
+    }*/
+  </style>
+  <body>
+    <!-- NAVBAR
+    ================================================== -->
+        {%for nav in nav%}
+        <div class="navbar-wrapper">
+          <div class="container">
+
+            <nav class="navbar navbar-inverse navbar-static-top">
+              <div class="container">
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                  <a class="navbar-brand" href="/">Em Gray Media</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                  <ul class="nav navbar-nav">
+                    <li><a href="/">Home</a></li>
+                    <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About<span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                        <li><a href="/about">{{nav.about_1}}</a></li>
+                        <li><a href="/about#being_body_positive">{{nav.about_2}}</a></li>
+                        <li><a href="/about#my_camera">{{nav.about_3}}</a></li>
+                        <li><a href="/about#editing_photos">{{nav.about_4}}</a></li>
+                      </ul>
+                    </li>
+                    <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Portfolio<span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                        <li class="dropdown-header">{{nav.portfolio_header_1}}</li>
+                        <li><a href="/album/{{nav.portfolio_1_action_1.id}}">{{nav.portfolio_1_action_1.album_name}}</a></li>
+                        <li><a href="/album/{{nav.portfolio_1_action_2.id}}">{{nav.portfolio_1_action_2.album_name}}</a></li>
+                        <li><a href="/modeling">View All →</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li class="dropdown-header">{{nav.portfolio_header_2}}</li>
+                        <li><a href="/album/{{nav.portfolio_2_action_1.id}}">{{nav.portfolio_2_action_1.album_name}}</a></li>
+                        <li><a href="/album/{{nav.portfolio_2_action_2.id}}">{{nav.portfolio_2_action_2.album_name}}</a></li>
+                        <li><a href="/collaborations">View All →</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li class="dropdown-header">{{nav.portfolio_header_3}}</li>
+                        <li><a href="/album/{{nav.portfolio_3_action_1.id}}">{{nav.portfolio_3_action_1.album_name}}</a></li>
+                        <li><a href="/album/{{nav.portfolio_3_action_2.id}}">{{nav.portfolio_3_action_2.album_name}}</a></li>
+                        <li><a href="/photography">View All →</a></li>
+                      </ul>
+                    </li>
+                    <li class="active"><a href="/book">Book Now</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="/account">Account</a></li>
+                  </ul>
+                </div>
+              </div>
+            </nav>
+
+          </div>
+        </div>
+        {%endfor%}
+
+        <!-- Marketing messaging and featurettes
+        ================================================== -->
+        <!-- Wrap the rest of the page in another container to center all the content. -->
+        <div class="container">
+          <br><br><br>
+          <h1 class = "section-header">Book a Shoot:</h1>
+            <div class="form">
+              <form action="/createbooking" method="post" role="form" class="contactForm">
+                  {%csrf_token%}
+                  Package:<select name="package" class="form-control">
+                  {%for package in package%}
+                    <option value="{{package.package_title}}">{{package.package_title}}</option>
+                  {%endfor%}
+                </select><br>
+                  Prefered Date 1:<input type="date" class="form-control" name="date_1" id="email" placeholder="Your Email"/><br>
+                  Prefered Date 2:<input type="date" class="form-control" name="date_2" id="email" placeholder="Your Email"/><br>
+                  Prefered Date 3:<input type="date" class="form-control" name="date_3" id="email" placeholder="Your Email"/><br>
+                  Prefered Time of Day:<select name="time_of_day" class="form-control">
+                    <option value="Early Morning">Early Morning (5 am - 8 am)</option>
+                    <option value="Morning">Morning (8 am - 11 am)</option>
+                    <option value="Mid Day">Mid Day (11 am - 2 pm)</option>
+                    <option value="After Noon">After Noon (2pm - 5 pm)</option>
+                    <option value="Golden Hour">Golden Hour (5pm - 8 pm)</option>
+                    <option value="Night">Night (8pm - 11 pm)</option>
+                </select><br>
+                  Prefered Location:<input type="text" class="form-control" name="location" id="subject" placeholder="Location"/><br>
+                  Length of Shoot in Hours:<input type="number" class="form-control" name="length" id="subject" placeholder="Hours"/><br>
+                  <div class="text-center"><button type="submit">Book</button></div>
+              </form>
+          </div><!-- /.row -->
+
+
+
+          <!-- START THE FEATURETTES -->
+
+          <hr class="featurette-divider">
+
+          <!-- FOOTER -->
+          <div class="socialicondiv" align="center">
+            <a href="https://www.instagram.com/msemgray/">
+              <img class="socialicons" src="{% static 'modeling/img/instagram_icon.png' %}" alt="Instagram Icon">
+            </a>
+            <img class="socialicons" src="{% static 'modeling/img/thehub_icon.png' %}" alt="The Hub Icon">
+            <a href="https://www.linkedin.com/in/emily-gray-028173146/ ">
+              <img class="socialicons" src="{% static 'modeling/img/linkedin_icon.png' %}" alt="LinkedIn Icon">
+            </a>
+          </div>
+
+          <footer>
+            <p class="pull-right"><a href="#">Back to top</a></p>
+            <p>&copy; 2016 Em Gray Media. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+          </footer>
+
+        </div><!-- /.container -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery.min.js"><\/script>')</script>
+        <script src="{% static 'modeling/js/bootstrap.min.js' %}"></script>
+        <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+        <script src="{% static 'modeling/js/holder.min.js' %}"></script>
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <script src="{% static 'modeling/js/ie10-viewport-bug-workaround.js' %}"></script>
+  </body>
+</html>

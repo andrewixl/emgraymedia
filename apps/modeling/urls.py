@@ -17,4 +17,6 @@ urlpatterns = [
     url(r'^editprofile$', views.editprofile),
     url(r'^editprofiledata$', views.editprofiledata),
     url(r'^promotions$', views.promotions),
+    url(r'^booking$', views.booking),
+    url(r'^createbooking$', views.createbooking),
 ]

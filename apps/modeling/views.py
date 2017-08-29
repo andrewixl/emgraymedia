@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from .models import Picture, Home, Contact, Album, About, Package, Promotion, ContactPage, Navbar
+from .models import Picture, Home, Contact, Album, About, Package, Promotion, ContactPage, Navbar, Booking
 from ..login_app.models import User
 from django.contrib import messages
 
@@ -168,3 +168,25 @@ def promotions(request):
 	"nav":nav,
 	}
 	return render(request, 'modeling/promotions.html', context)
+
+def booking(request):
+	package = Package.objects.all()
+	nav = Navbar.objects.all()
+	context = {
+	'package' : package,
+	"nav":nav,
+	}
+	return render(request, 'modeling/booking.html', context)
+
+def createbooking(request):
+	try:
+		request.session['user_id']
+		redirect("/")
+	except KeyError:
+		pass
+	results = Booking.objects.createBooking(request.POST, request.session['user_id'], request.session['email'])
+	print "created after"
+	request.session['status'] = results['status']
+	print results['status']
+	genErrors(request, results['errors'])
+	return redirect('/book')
