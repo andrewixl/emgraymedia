@@ -19,4 +19,8 @@ urlpatterns = [
     url(r'^promotions$', views.promotions),
     url(r'^booking$', views.booking),
     url(r'^createbooking$', views.createbooking),
+    url(r'^pmodeling$', views.pmodeling),
+    url(r'^pcollaborations$', views.pcollaborations),
+    url(r'^pphotography$', views.pphotography),
+
 ]

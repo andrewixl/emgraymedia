@@ -9,7 +9,7 @@
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <!-- <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet"> -->
     <link href="{% static 'modeling/css/index.css' %}" rel="stylesheet">
-    <link href="{% static 'modeling/css/details.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'modeling/css/blueimp-gallery.min.css' %}">
     <link rel="shortcut icon" href="{% static 'modeling/img/favicon.ico'%}" type="image/x-icon">
     <title>Em Gray Media</title>
   </head>
@@ -34,7 +34,7 @@
                 <div id="navbar" class="navbar-collapse collapse">
                   <ul class="nav navbar-nav">
                     <li><a href="/">Home</a></li>
-                    <li class="dropdown active">
+                    <li class="dropdown">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About<span class="caret"></span></a>
                       <ul class="dropdown-menu">
                         <li><a href="/about">{{nav.about_1}}</a></li>
@@ -43,7 +43,7 @@
                         <li><a href="/about#editing_photos">{{nav.about_4}}</a></li>
                       </ul>
                     </li>
-                    <li class="dropdown">
+                    <li class="dropdown active">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Portfolio<span class="caret"></span></a>
                       <ul class="dropdown-menu">
                         <li class="dropdown-header">{{nav.portfolio_header_1}}</li>
@@ -74,81 +74,41 @@
         </div>
         {%endfor%}
 
-
         <!-- Marketing messaging and featurettes
         ================================================== -->
         <!-- Wrap the rest of the page in another container to center all the content. -->
-        <br><br><br><br>
-    <div class="content-wrapper">
-		<div class="item-container">
-			<div class="container">
-				<div class="col-md-6">
-					<div class="product col-md-12 service-image-left">
-						<center>
-							<img id="item-display" src="https://emgraymedia.s3.amazonaws.com/media/{{package.package_photo}}" alt="" height="320px" width="auto"></img>
-						</center>
-					</div>
-				</div>
 
-				<div class="col-md-6">
-					<div class="product-title"><h1>{{package.package_title}}</h1></div>
-					<div class="product-desc"><h4>{{package.package_quote_1}} <br><br> {{package.package_quote_2}}</h4></div>
-					<!-- <div class="product-rating"><i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i class="fa fa-star-o"></i> </div> -->
-					<hr>
-					<div class="product-price">{{package.package_cost}}</div>
-					<div class="product-stock">Package Currently Availible</div>
-					<hr>
-					<div class="btn-group cart">
-						<a href="/book"><button type="button" class="btn btn-success">
-							Book Now
-						</button></a>
-					</div>
-					<!-- <div class="btn-group wishlist">
-						<button type="button" class="btn btn-danger">
-							Add to wishlist
-						</button>
-					</div> -->
-				</div>
-			</div>
-		</div>
-		<div class="container-fluid">
-			<div class="col-md-12 product-info">
-					<ul id="myTab" class="nav nav-tabs nav_tabs">
+        <div class="container marketing">
+          <br><br><br>
+          <!-- The Gallery as lightbox dialog, should be a child element of the document body -->
+          <div id="blueimp-gallery" class="blueimp-gallery">
+              <div class="slides"></div>
+              <h3 class="title"></h3>
+              <a class="prev">‹</a>
+              <a class="next">›</a>
+              <a class="close">×</a>
+              <a class="play-pause"></a>
+              <ol class="indicator"></ol>
+          </div>
 
-						<li class="active"><a href="#service-one" data-toggle="tab">DESCRIPTION</a></li>
-						<li><a href="#service-two" data-toggle="tab">WHAT'S INCLUDED</a></li>
-						<li><a href="#service-three" data-toggle="tab">REVIEWS</a></li>
+          <h1 class="page-header">{{type}} Portfolio:</h1>
 
-					</ul>
-				<div id="myTabContent" class="tab-content">
-						<div class="tab-pane fade in active" id="service-one">
+          <div id="links" align="center">
+            {%for album in album%}
+            <a href="/album/{{album.id}}"><img height="200" src="https://emgraymedia.s3.amazonaws.com/media/{{album.album_cover}}" alt="Photo {{album.id}}" style="display: none;">
+            <div class="imagetest">
+              <img class="centered-and-cropped" width="200" height="200"
+                style="" src="https://emgraymedia.s3.amazonaws.com/media/{{album.album_cover}}" alt="Photo {{photos.id}}"><br>
+              {{album.album_name}}
+            </div>
+            </a>
 
-							<section class="container product-info">
-                INCLUDED IN 1.5K PROMOTION FOR 40% OFF DOES NOT INCLUDE GROUP SHOOT <br>
-								{{package.package_description}}
-							</section>
+            {%endfor%}
+        </div>
 
-						</div>
-					<div class="tab-pane fade" id="service-two">
-
-						<section class="container product-info">
-              {{package.package_inclusions}}
-						</section>
-
-					</div>
-					<div class="tab-pane fade" id="service-three">
-
-					</div>
-				</div>
-				<hr>
-			</div>
-		</div>
-
+          <!-- START THE FEATURETTES -->
 
           <hr class="featurette-divider">
-
-          <!-- /END THE FEATURETTES-->
-
 
           <!-- FOOTER -->
           <div class="socialicondiv" align="center">
@@ -167,6 +127,17 @@
           </footer>
 
         </div><!-- /.container -->
+        <script>
+        document.getElementById('links').onclick = function (event) {
+            event = event || window.event;
+            var target = event.target || event.srcElement,
+                link = target.src ? target.parentNode : target,
+                options = {index: link, event: event},
+                links = this.getElementsByTagName('a');
+            blueimp.Gallery(links, options);
+        };
+        </script>
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery.min.js"><\/script>')</script>
         <script src="{% static 'modeling/js/bootstrap.min.js' %}"></script>
@@ -174,5 +145,6 @@
         <script src="{% static 'modeling/js/holder.min.js' %}"></script>
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
         <script src="{% static 'modeling/js/ie10-viewport-bug-workaround.js' %}"></script>
+        <script src="{% static 'modeling/js/blueimp-gallery.min.js' %}"></script>
   </body>
 </html>

@@ -1,3 +1,6 @@
+.imagetest{
+  display: inline-block;
+}
 #profileimage{
   position: relative;
   right: 50px;

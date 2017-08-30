@@ -190,3 +190,33 @@ def createbooking(request):
 	print results['status']
 	genErrors(request, results['errors'])
 	return redirect('/book')
+
+def pmodeling(request):
+	album = Album.objects.filter(album_type = "modeling").all()
+	nav = Navbar.objects.all()
+	context = {
+	'album' : album,
+	"nav":nav,
+	"type":"Modeling"
+	}
+	return render(request, 'modeling/portfolio.html', context)
+
+def pphotography(request):
+	album = Album.objects.filter(album_type = "photography").all()
+	nav = Navbar.objects.all()
+	context = {
+	'album' : album,
+	"nav":nav,
+	"type":"Photography"
+	}
+	return render(request, 'modeling/portfolio.html', context)
+
+def pcollaborations(request):
+	album = Album.objects.filter(album_type = "collaboration").all()
+	nav = Navbar.objects.all()
+	context = {
+	'album' : album,
+	"nav":nav,
+	"type":"Collaborations"
+	}
+	return render(request, 'modeling/portfolio.html', context)
