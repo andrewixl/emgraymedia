@@ -22,5 +22,5 @@ urlpatterns = [
     url(r'^pmodeling$', views.pmodeling),
     url(r'^pcollaborations$', views.pcollaborations),
     url(r'^pphotography$', views.pphotography),
-
+    url(r'^pseniorphotos$', views.pseniorphotos),
 ]

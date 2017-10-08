@@ -220,3 +220,13 @@ def pcollaborations(request):
 	"type":"Collaborations"
 	}
 	return render(request, 'modeling/portfolio.html', context)
+
+def pseniorphotos(request):
+	album = Album.objects.filter(album_type = "senior photos").all()
+	nav = Navbar.objects.all()
+	context = {
+	'album' : album,
+	"nav":nav,
+	"type":"Senior Photos"
+	}
+	return render(request, 'modeling/portfolio.html', context)
