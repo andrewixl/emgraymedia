@@ -9,6 +9,7 @@
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <!-- <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet"> -->
     <link href="{% static 'modeling/css/index.css' %}" rel="stylesheet">
+    <link href="{% static 'modeling/css/sidebar.css' %}" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'modeling/css/blueimp-gallery.min.css' %}">
     <link rel="shortcut icon" href="{% static 'modeling/img/favicon.ico'%}" type="image/x-icon">
     <title>Em Gray Media</title>
@@ -92,6 +93,31 @@
           </div>
 
           <h1 class="page-header">{{type}} Portfolio:</h1>
+          <div class="">
+            <nav class="navbar navbar-inverse sidebar" role="navigation">
+                <div class="container-fluid">
+            		<!-- Brand and toggle get grouped for better mobile display -->
+            		<div class="navbar-header">
+            			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-sidebar-navbar-collapse-1">
+            				<span class="sr-only">Toggle navigation</span>
+            				<span class="icon-bar"></span>
+            				<span class="icon-bar"></span>
+            				<span class="icon-bar"></span>
+            			</button>
+            			<a class="navbar-brand" href="#">Other Portfolios</a>
+            		</div>
+            		<!-- Collect the nav links, forms, and other content for toggling -->
+            		<div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
+            			<ul class="nav navbar-nav">
+            				<li ><a href="/pmodeling">Modeling<span style="font-size:16px;" class="pull-right hidden-xs showopacity"></span></a></li>
+            				<li ><a href="/pcollaborations">Collaborations<span style="font-size:16px;" class="pull-right hidden-xs showopacitye"></span></a></li>
+            				<li><a href="/pphotography">General Photography<span style="font-size:16px;" class="pull-right hidden-xs showopacity"></span></a></li>
+            				<li ><a href="/pseniorphotos">Senior Photos<span style="font-size:16px;" class="pull-right hidden-xs showopacity"></span></a></li>
+            			</ul>
+            		</div>
+            	</div>
+            </nav>
+          </div>
 
           <div id="" align="center">
             {%for album in album%}
@@ -107,7 +133,7 @@
         </div>
 
           <!-- START THE FEATURETTES -->
-
+<br><br>
           <hr class="featurette-divider">
 
           <!-- FOOTER -->
