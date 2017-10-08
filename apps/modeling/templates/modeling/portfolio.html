@@ -93,9 +93,9 @@
 
           <h1 class="page-header">{{type}} Portfolio:</h1>
 
-          <div id="links" align="center">
+          <div id="" align="center">
             {%for album in album%}
-            <a href="/album/{{album.id}}"><img height="200" src="https://emgraymedia.s3.amazonaws.com/media/{{album.album_cover}}" alt="Photo {{album.id}}" style="display: none;">
+            <a href="/album/{{album.id}}"><img height="200" src="/album/{{album.id}}" alt="Photo {{album.id}}" style="display: none;">
             <div class="imagetest">
               <img class="centered-and-cropped" width="200" height="200"
                 style="" src="https://emgraymedia.s3.amazonaws.com/media/{{album.album_cover}}" alt="Photo {{photos.id}}"><br>

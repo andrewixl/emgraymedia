@@ -26,7 +26,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['emgraymedia.gq', 'www.emgraymedia.gq', '52.27.250.145']
+ALLOWED_HOSTS = ['emgraymedia.gq', 'www.emgraymedia.gq', '52.27.250.145', 'localhost']
 
 
 # Application definition
