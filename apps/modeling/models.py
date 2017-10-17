@@ -20,6 +20,7 @@ class Album(models.Model):
     album_location = models.CharField(_("Location"),max_length=150)
     album_description = models.CharField(_("Description"),max_length=350)
     album_photographer = models.CharField(_("Photographer (Instagram Handle)"),max_length=350)
+    album_model = models.CharField(_("Model (Instagram Handle)"),max_length=350)
     shoot_date = models.DateField(_("Shoot Date"),auto_now=False, auto_now_add=False)
     album_type = models.CharField(max_length=256, choices=[('collaboration', 'Collaboration'), ('modeling', 'Modeling'), ('photography', 'Photography'), ('senior photos', 'Senior Photos')])
     created_at = models.DateTimeField(auto_now_add=True)
